@@ -4,9 +4,12 @@ const app = express();
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauces')
 const path = require('path');
+const helmet = require('helmet');
 
 const dotenv = require('dotenv');
 const result = dotenv.config();
+
+app.use(helmet({ crossOriginResourcePolicy: { policy: "same-site" } }));
 
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/?retryWrites=true&w=majority`,
   { useNewUrlParser: true,

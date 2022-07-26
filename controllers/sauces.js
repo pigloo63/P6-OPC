@@ -1,4 +1,4 @@
-const Sauce = require('../models/sauces');
+const Sauce = require('../models/Sauce');
 const fs =  require('fs');
 
 exports.createSauce = (req, res, next) => {
@@ -19,7 +19,7 @@ exports.updateSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
     .then((sauce) =>{
       if(sauce.userId !== req.auth.userId){
-        res.status(401).json({message:'unauthorized request'})
+        res.status(403).json({message:'unauthorized request'})
       } else {
         if(req.file){
           const filename = sauce.imageUrl.split("/images/")[1];
@@ -44,7 +44,7 @@ exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
       .then((object) => {
         if(object.userId !== req.auth.userId){
-          res.status(401).json({message:'unauthorized request'})
+          res.status(403).json({message:'unauthorized request'})
         } else {
           const filename = object.imageUrl.split('/images')[1];
           fs.unlink(`images/${filename}`, () => {
