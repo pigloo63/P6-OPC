@@ -70,7 +70,7 @@ exports.likeSauce = (req, res, next) => {
             }
             )
             .then(() => res.status(201).json({message:'like + 1'}))
-            .catch(error => { res.status(400).json( { error })});  
+            .catch(error => { res.status(400).json( { error } )});  
           };
 
       if(object.usersLiked.includes(req.body.userId) && req.body.like === 0){
@@ -81,7 +81,7 @@ exports.likeSauce = (req, res, next) => {
             $pull: {usersLiked: req.body.userId}
           })
           .then(() => res.status(201).json({message:'like 0'}))
-          .catch(error => { res.status(400).json( { error })});      
+          .catch(error => { res.status(400).json( { error } )});      
       }; 
 
       if(!object.usersDisliked.includes(req.body.userId) && req.body.like === -1){
@@ -93,7 +93,7 @@ exports.likeSauce = (req, res, next) => {
           }
           )
           .then(() => res.status(201).json({message:'dislike + 1'}))
-          .catch(error => { res.status(400).json( { error })});  
+          .catch(error => { res.status(400).json( { error } )});  
         };
 
         if(object.usersDisliked.includes(req.body.userId) && req.body.like === 0){
@@ -104,11 +104,11 @@ exports.likeSauce = (req, res, next) => {
               $pull: {usersDisliked: req.body.userId}
             })
             .then(() => res.status(201).json({message:'dislike 0'}))
-            .catch(error => { res.status(400).json( { error })});      
+            .catch(error => { res.status(400).json( { error } )});      
         }; 
 
     })  
-    .catch(error => { res.status(404).json( { error })});
+    .catch(error => { res.status(404).json( { error } )});
 };
 
 exports.getOneSauce = (req, res, next) => {
